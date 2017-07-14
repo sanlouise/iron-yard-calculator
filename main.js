@@ -62,6 +62,9 @@ timesButton.addEventListener('click', () => calculate(timesButton));
 const divisionButton = document.getElementById('division');
 divisionButton.addEventListener('click', () => calculate(divisionButton));
 
+const modulaButton = document.getElementById('modula');
+modulaButton.addEventListener('click', () => calculate(modulaButton));
+
 const dotButton = document.getElementById('dot');
 dotButton.addEventListener('click', () => calculate(dotButton));
 
@@ -75,6 +78,5 @@ inputField.innerHTML = inputArr;
 
 const resultButton = document.getElementById('result');
 resultButton.addEventListener('click', () => evaluate());
-
 
 console.log(inputArr);
