@@ -14,9 +14,17 @@ const calculate = (button) => {
 }
 
 const evaluate = () => {
-  let result = eval(inputArr.join(''));
-  inputField.innerHTML = result;
-  inputArr = [];
+
+  if (inputArr[0] != "√") {
+    let result = eval(inputArr.join(''));
+    inputField.innerHTML = result;
+    inputArr = [];
+  } else {
+    let result = Math.sqrt(eval(inputArr[1]));
+    inputField.innerHTML = result;
+    inputArr = [];
+  }
+
 }
 
 // VARIABLE DECLARATIONS
@@ -67,6 +75,9 @@ modulaButton.addEventListener('click', () => calculate(modulaButton));
 
 const dotButton = document.getElementById('dot');
 dotButton.addEventListener('click', () => calculate(dotButton));
+
+const squareRootButton = document.getElementById('squareRoot');
+squareRootButton.addEventListener('click', () => calculate(squareRootButton));
 
 
 // INPUT, RESULT, CLEAR BUTTONS
