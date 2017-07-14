@@ -11,32 +11,30 @@ const clear = () => {
 }
 
 const calculate = (button) => {
-  timesDataStoragePressed = 0;
   inputArr.push(button.dataset.value);
   inputField.innerHTML = inputArr.join('');
 }
 
 // STORE
-let timesDataStoragePressed = 0;
 let currentDataStorageItem;
+let historyPosition = 1
 
 const dataStoreButton = document.getElementById('dataStore');
 dataStoreButton.addEventListener('click', (event) => getDataStore())
 
 const getDataStore = () => {
-  // Use pop here, we want to get rid of the last arr element as the button
-  // can be pressed multiple times.
   if (dataStore.length > 0) {
-    currentDataStorageItem = dataStore.pop()
-    inputField.innerHTML = currentDataStorageItem;
+    historyPosition++
+    //Create temporary variable - don't want to modify the actual dataStorage array
+    let tempHistory = dataStore[dataStore.length - historyPosition]
+    inputField.innerHTML = tempHistory;
   } else {
-    inputField.innerHTML = "Can't go back more!"
+    inputField.innerHTML = "No more previous answers.."
   }
 }
 
-
-
 const evaluate = () => {
+  historyPosition = 1
   if (inputArr[0] != "√") {
     let result = eval(inputArr.join(''));
     inputField.innerHTML = result;
@@ -60,5 +58,3 @@ inputField.innerHTML = inputArr;
 
 const resultButton = document.getElementById('result');
 resultButton.addEventListener('click', () => evaluate());
-
-console.log(dataStore);

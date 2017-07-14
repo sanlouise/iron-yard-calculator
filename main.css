@@ -17,6 +17,10 @@ td {
   border: 1px solid white;
 }
 
+td:active {
+  border: 2px solid white;
+}
+
 td.operator{
   background-color: #82C276;
   color: grey;
