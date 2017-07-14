@@ -14,13 +14,13 @@ const calculate = (button) => {
 }
 
 const evaluate = () => {
-
   if (inputArr[0] != "√") {
     let result = eval(inputArr.join(''));
     inputField.innerHTML = result;
     inputArr = [];
   } else {
-    let result = Math.sqrt(eval(inputArr[1]));
+    inputArr = inputArr.slice(1);
+    let result = Math.sqrt(eval(inputArr.join('')));
     inputField.innerHTML = result;
     inputArr = [];
   }
@@ -28,7 +28,6 @@ const evaluate = () => {
 }
 
 // VARIABLE DECLARATIONS
-
 // DIGITS
 const digitButtonOne = document.getElementById('one');
 digitButtonOne.addEventListener('click', () => calculate(digitButtonOne));
