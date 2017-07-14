@@ -7,17 +7,21 @@ const clear = () => {
 }
 
 const calculate = (button) => {
-  console.log('button', button.innerHTML);
+  console.log(button.innerHTML);
   inputArr.push(button.innerHTML);
-  inputField.innerHTML = inputArr.map(Number).join('');
+  inputField.innerHTML = inputArr.join('');
+  console.log("Looking for this! " + inputField.innerHTML);
 }
 
 const evaluate = () => {
-  let result = eval(inputArr);
+  let result = eval(inputArr.join(''));
   inputField.innerHTML = result;
+  inputArr = [];
 }
 
-// VARIABLE DECLARATION
+// VARIABLE DECLARATIONS
+
+// DIGITS
 const digitButtonOne = document.getElementById('one');
 digitButtonOne.addEventListener('click', () => calculate(digitButtonOne));
 
@@ -45,10 +49,32 @@ digitButtonEight.addEventListener('click', () => calculate(digitButtonEight));
 const digitButtonNine = document.getElementById('nine');
 digitButtonNine.addEventListener('click', () => calculate(digitButtonNine));
 
+// OPERATORS
+const plusButton = document.getElementById('plus');
+plusButton.addEventListener('click', () => calculate(plusButton));
+
+const minusButton = document.getElementById('minus');
+minusButton.addEventListener('click', () => calculate(minusButton));
+
+const timesButton = document.getElementById('times');
+timesButton.addEventListener('click', () => calculate(timesButton));
+
+const divisionButton = document.getElementById('division');
+divisionButton.addEventListener('click', () => calculate(divisionButton));
+
+const dotButton = document.getElementById('dot');
+dotButton.addEventListener('click', () => calculate(dotButton));
+
+
+// INPUT, RESULT, CLEAR BUTTONS
 const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click', clear);
 
 const inputField = document.getElementById('input');
 inputField.innerHTML = inputArr;
+
+const resultButton = document.getElementById('result');
+resultButton.addEventListener('click', () => evaluate());
+
 
 console.log(inputArr);
