@@ -1,0 +1,31 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  background-color: #64B255;
+  font-size: 15px;
+  text-align: center;
+  color: #fff;
+  width: 5em;
+  height: 5em;
+  border: 1px solid white;
+}
+
+td.operator{
+  background-color: #82C276;
+  color: grey;
+}
+
+.operator:hover{
+  color: white;
+}
+
+.clear:hover{
+  background-color: #82C276;
+}
