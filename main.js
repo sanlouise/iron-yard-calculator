@@ -16,16 +16,13 @@ const calculate = (button) => {
 }
 
 // STORE
-let currentDataStorageItem;
-let historyPosition = 1
-
+let currentDataStorageItem, historyPosition = 1
 const dataStoreButton = document.getElementById('dataStore');
 dataStoreButton.addEventListener('click', (event) => getDataStore())
 
 const getDataStore = () => {
   if (dataStore.length > 0) {
     historyPosition++
-    //Create temporary variable - don't want to modify the actual dataStorage array
     let tempHistory = dataStore[dataStore.length - historyPosition]
     inputField.innerHTML = tempHistory;
   } else {
@@ -33,10 +30,38 @@ const getDataStore = () => {
   }
 }
 
+const getOperatorIndex = (operator) => {
+  return operator === '+' || operator === '-' || operator === '*' || operator === '/' || operator === '%'
+}
+
 const evaluate = () => {
   historyPosition = 1
+  let result;
   if (inputArr[0] != "√") {
-    let result = eval(inputArr.join(''));
+
+    let operatorIndex = inputArr.findIndex(getOperatorIndex);
+    let operator = inputArr[operatorIndex];
+    let a = inputArr.slice(0, operatorIndex).join('');
+    let b = inputArr.splice(operatorIndex + 1).join('');
+
+    switch (operator) {
+      case "+":
+        result = a + b;
+        break;
+      case "-":
+        result = a - b;
+        break;
+      case "*":
+        result = a * b;
+        break;
+      case "/":
+        result = a / b;
+        break;
+      case "%":
+        result = a % b;
+        break;
+    }
+
     inputField.innerHTML = result;
     dataStore.push(result);
     inputArr = [];
