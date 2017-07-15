@@ -67,7 +67,6 @@ const evaluate = () => {
   }
 }
 
-
 // Add Event Listeners
 operationButtons.forEach((button) => {
   button.addEventListener('click', (event) => calculate(event.target));
