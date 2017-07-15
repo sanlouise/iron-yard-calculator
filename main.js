@@ -1,9 +1,9 @@
 let inputArr = [], dataStore = [], currentDataStorageItem, historyPosition = 1;
-
-const operationButtons = document.querySelectorAll(".btn")
-operationButtons.forEach(function(button){
-  button.addEventListener('click', (event) => calculate(event.target));
-})
+const clearButton = document.getElementById('clear');
+const dataStoreButton = document.getElementById('dataStore');
+const inputField = document.getElementById('input');
+const operationButtons = document.querySelectorAll(".btn");
+const resultButton = document.getElementById('result');
 
 const clear = () => {
   inputArr = [];
@@ -14,10 +14,6 @@ const calculate = (button) => {
   inputArr.push(button.dataset.value);
   inputField.innerHTML = inputArr.join('');
 }
-
-// STORE
-const dataStoreButton = document.getElementById('dataStore');
-dataStoreButton.addEventListener('click', (event) => getDataStore())
 
 const getDataStore = () => {
   if (dataStore.length > 0) {
@@ -62,7 +58,7 @@ const getResult= () => {
 }
 
 const evaluate = () => {
-  historyPosition = 1
+  historyPosition = 1;
   let result;
   if (inputArr[0] != "√") {
     getResult();
@@ -71,12 +67,13 @@ const evaluate = () => {
   }
 }
 
-// INPUT, RESULT, CLEAR BUTTONS
-const clearButton = document.getElementById('clear');
+
+// Add Event Listeners
+operationButtons.forEach((button) => {
+  button.addEventListener('click', (event) => calculate(event.target));
+})
+
 clearButton.addEventListener('click', clear);
-
-const inputField = document.getElementById('input');
+dataStoreButton.addEventListener('click', (event) => getDataStore())
 inputField.innerHTML = inputArr;
-
-const resultButton = document.getElementById('result');
 resultButton.addEventListener('click', () => evaluate());
