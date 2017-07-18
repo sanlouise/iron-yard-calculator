@@ -30,9 +30,9 @@ const getOperatorIndex = (operator) => {
 }
 
 const displayResult = () => {
+  console.log(result);
   inputField.innerHTML = result;
   dataStore.push(result);
-  latestAns = result;
   inputArr = [];
 }
 
@@ -42,19 +42,25 @@ const getResultForSqrt = () => {
   displayResult();
 }
 
-//This function is needed for chaining of operators
-const newFunc = (inputArr) => {
-  return new Function('return ' + inputArr.join(''))();
-}
+const getResult= () => {
+  let operatorIndex = inputArr.findIndex(getOperatorIndex);
+  let operator = inputArr[operatorIndex];
+  let a = inputArr.slice(0, operatorIndex).join('');
+  let b = inputArr.splice(operatorIndex + 1).join('');
 
-const getResult = () => {
-  result = (newFunc(inputArr));
+  switch (operator) {
+    case "+": result = a + b; break;
+    case "-": result = a - b; break;
+    case "*": result = a * b; break;
+    case "/": result = a / b; break;
+    case "%": result = a % b; break;
+  }
   displayResult();
 }
 
 const evaluate = () => {
   historyPosition = 1;
-  let result, latestAns;
+  let result;
   if (inputArr[0] != "√") {
     getResult();
   } else {
